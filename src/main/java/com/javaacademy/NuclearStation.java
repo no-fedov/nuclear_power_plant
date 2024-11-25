@@ -1,8 +1,10 @@
-package com.javaacademy.station;
+package com.javaacademy;
 
-import com.javaacademy.department.ReactorDepartment;
-import com.javaacademy.department.SecurityDepartment;
+import com.javaacademy.department.economic.EconomicDepartment;
+import com.javaacademy.department.reactor.ReactorDepartment;
+import com.javaacademy.department.security.SecurityDepartment;
 import com.javaacademy.exception.NuclearFuelIsEmptyException;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import static java.math.BigDecimal.ZERO;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class NuclearStation {
     private static final int DAYS = 365;
 
@@ -26,9 +29,9 @@ public class NuclearStation {
     @Setter
     private SecurityDepartment securityDepartment;
 
-    public NuclearStation(ReactorDepartment reactorDepartment) {
-        this.reactorDepartment = reactorDepartment;
-    }
+    @Autowired
+    @Setter
+    private EconomicDepartment economicDepartment;
 
     public void startYear() {
         log.info("Атомная станция начала работу");
@@ -47,9 +50,13 @@ public class NuclearStation {
                 generatedEnergyForYear);
         log.info("Количество инцидентов за год: {}", securityDepartment.getCountAccidents());
         securityDepartment.reset();
+        log.info("Доход за год составил: {} {}",
+                economicDepartment.computeYearIncomes(generatedEnergyForYear.longValue()),
+                economicDepartment.getEconomicProperty().getCurrency());
     }
 
     public void start(int year) {
+        log.info("Действие происходит в стране: {}", economicDepartment.getCountry());
         while (year > 0) {
             startYear();
             --year;

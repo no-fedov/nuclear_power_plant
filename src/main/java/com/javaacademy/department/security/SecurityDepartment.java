@@ -1,6 +1,6 @@
-package com.javaacademy.department;
+package com.javaacademy.department.security;
 
-import com.javaacademy.station.NuclearStation;
+import com.javaacademy.NuclearStation;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 

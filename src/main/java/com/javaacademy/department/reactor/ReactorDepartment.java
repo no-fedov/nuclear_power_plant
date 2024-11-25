@@ -1,5 +1,6 @@
-package com.javaacademy.department;
+package com.javaacademy.department.reactor;
 
+import com.javaacademy.department.security.SecurityDepartment;
 import com.javaacademy.exception.NuclearFuelIsEmptyException;
 import com.javaacademy.exception.ReactorWorkException;
 import lombok.Setter;
