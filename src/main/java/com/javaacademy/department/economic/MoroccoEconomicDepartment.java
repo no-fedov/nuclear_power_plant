@@ -16,7 +16,8 @@ public class MoroccoEconomicDepartment extends EconomicDepartment {
     private static final long LIMIT_ENERGY_CONST_PRICE = 5_000_000_000L;
     private static final BigDecimal PRICE_ON_INCREASED_INCOME = valueOf(6);
 
-    public MoroccoEconomicDepartment(EconomicProperty economicProperty, @Value("${app.country}") String country) {
+    public MoroccoEconomicDepartment(EconomicProperty economicProperty,
+                                     @Value("${app.country}") String country) {
         super(economicProperty, country);
     }
 
