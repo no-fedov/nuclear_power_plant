@@ -4,9 +4,8 @@ import com.javaacademy.department.security.SecurityDepartment;
 import com.javaacademy.exception.NuclearFuelIsEmptyException;
 import com.javaacademy.exception.ReactorWorkException;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -15,20 +14,20 @@ import static java.math.BigDecimal.valueOf;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class ReactorDepartment {
     private static final BigDecimal ENERGY_GENERATED_IN_ONE_DAY = valueOf(10_000_000);
     private static final int NUMBER_LAUNCHES_BEFORE_FUEL_OVERLOAD = 100;
+
+    private final SecurityDepartment securityDepartment;
 
     @Getter
     private boolean isWorks;
     private int launchCounter;
 
-    @Setter
-    @Autowired
-    private SecurityDepartment securityDepartment;
-
     /**
      * Запускает реактор
+     *
      * @return количество выработанной энергии в кВт/ч
      */
     public BigDecimal run() {

@@ -5,9 +5,7 @@ import com.javaacademy.department.reactor.ReactorDepartment;
 import com.javaacademy.department.security.SecurityDepartment;
 import com.javaacademy.exception.NuclearFuelIsEmptyException;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -20,17 +18,12 @@ import static java.math.BigDecimal.ZERO;
 public class NuclearStation {
     private static final int DAYS = 365;
 
+    private final ReactorDepartment reactorDepartment;
+    private final SecurityDepartment securityDepartment;
+    private final EconomicDepartment economicDepartment;
+
     private BigDecimal generatedEnergy = ZERO;
     private int accidentCountAllTime;
-    private final ReactorDepartment reactorDepartment;
-
-    @Autowired
-    @Setter
-    private SecurityDepartment securityDepartment;
-
-    @Autowired
-    @Setter
-    private EconomicDepartment economicDepartment;
 
     public void startYear() {
         log.info("Атомная станция начала работу");

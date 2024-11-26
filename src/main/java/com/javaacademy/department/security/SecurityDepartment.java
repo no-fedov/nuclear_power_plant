@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SecurityDepartment {
-    private int accidentCountPeriod;
     private final NuclearStation nuclearStation;
+    private int accidentCountPeriod;
 
     public SecurityDepartment(@Lazy NuclearStation nuclearStation) {
         this.nuclearStation = nuclearStation;
