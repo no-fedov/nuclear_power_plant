@@ -21,7 +21,6 @@ public class NuclearStation {
     private static final int DAYS = 365;
 
     private BigDecimal generatedEnergy = ZERO;
-
     private int accidentCountAllTime;
     private final ReactorDepartment reactorDepartment;
 

@@ -1,0 +1,5 @@
+app:
+  country: Франция
+  economic:
+    currency: евро
+    rate-kwh: 0.5

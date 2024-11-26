@@ -3,6 +3,7 @@ package com.javaacademy.department.reactor;
 import com.javaacademy.department.security.SecurityDepartment;
 import com.javaacademy.exception.NuclearFuelIsEmptyException;
 import com.javaacademy.exception.ReactorWorkException;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class ReactorDepartment {
     private static final BigDecimal ENERGY_GENERATED_IN_ONE_DAY = valueOf(10_000_000);
     private static final int NUMBER_LAUNCHES_BEFORE_FUEL_OVERLOAD = 100;
 
+    @Getter
     private boolean isWorks;
     private int launchCounter;
 
