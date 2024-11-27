@@ -40,7 +40,8 @@ public class MoroccoEconomicDepartment extends EconomicDepartment {
                     .multiply(valueOf(countElectricity));
         }
 
-        resultIncomes = resultIncomes.add(valueOf(countElectricity).multiply(PRICE_ON_INCREASED_INCOME));
+        resultIncomes = resultIncomes.add(valueOf(countElectricity)
+                .multiply(PRICE_ON_INCREASED_INCOME));
         return resultIncomes;
     }
 }
