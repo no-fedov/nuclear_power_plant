@@ -25,6 +25,10 @@ public class MoroccoEconomicDepartment extends EconomicDepartment {
     public BigDecimal computeYearIncomes(long countElectricity) {
         BigDecimal resultIncomes = ZERO;
 
+        if (countElectricity <= 0) {
+            return resultIncomes;
+        }
+
         if (countElectricity >= LIMIT_ENERGY_CONST_PRICE) {
             resultIncomes = resultIncomes.add(
                     economicProperty.getRateKwh()

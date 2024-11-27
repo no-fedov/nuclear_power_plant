@@ -1,0 +1,5 @@
+app:
+  country: Марокко
+  economic:
+    currency: дирхам
+    rate-kwh: 5

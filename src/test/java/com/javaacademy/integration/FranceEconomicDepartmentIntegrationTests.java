@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ActiveProfiles("france")
-public class FranceEconomicDepartmentTests {
+public class FranceEconomicDepartmentIntegrationTests {
     @Autowired
     private EconomicDepartment economicDepartment;
 
