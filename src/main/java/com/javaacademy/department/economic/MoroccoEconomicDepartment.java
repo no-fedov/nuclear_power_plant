@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 import static java.math.BigDecimal.ZERO;
 import static java.math.BigDecimal.valueOf;
+import static java.math.RoundingMode.HALF_UP;
 
 @Profile("morocco")
 @Component
@@ -24,6 +25,7 @@ public class MoroccoEconomicDepartment extends EconomicDepartment {
     @Override
     public BigDecimal computeYearIncomes(long countElectricity) {
         BigDecimal resultIncomes = ZERO;
+        BigDecimal priceForEnergy = economicProperty.getRateKwh();
 
         if (countElectricity <= 0) {
             return resultIncomes;
@@ -31,17 +33,22 @@ public class MoroccoEconomicDepartment extends EconomicDepartment {
 
         if (countElectricity >= LIMIT_ENERGY_CONST_PRICE) {
             resultIncomes = resultIncomes.add(
-                    economicProperty.getRateKwh()
-                            .multiply(valueOf(LIMIT_ENERGY_CONST_PRICE))
+                    calculateIncome(LIMIT_ENERGY_CONST_PRICE, priceForEnergy)
             );
             countElectricity -= LIMIT_ENERGY_CONST_PRICE;
         } else {
-            return economicProperty.getRateKwh()
-                    .multiply(valueOf(countElectricity));
+            return calculateIncome(countElectricity, priceForEnergy);
         }
 
-        resultIncomes = resultIncomes.add(valueOf(countElectricity)
-                .multiply(PRICE_ON_INCREASED_INCOME));
+        resultIncomes = resultIncomes.add(
+                calculateIncome(countElectricity, PRICE_ON_INCREASED_INCOME)
+        );
         return resultIncomes;
+    }
+
+    private BigDecimal calculateIncome(long countElectricity, BigDecimal price) {
+        return valueOf(countElectricity)
+                .multiply(price)
+                .setScale(2, HALF_UP);
     }
 }
